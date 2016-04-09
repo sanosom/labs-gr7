@@ -15,6 +15,10 @@ Se encuentra en el directorio ```SQLite```.
 
 Se encuentra en el directorio ```Lab2AppRun```.
 
+## Organizate
+
+Se encuentra en el directorio ```Organizate```.
+
 ### Integrantes
 
 - Daniela Zapata
