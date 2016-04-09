@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Lab2AppRun</string>
+    <string name="about">
+        Lab2AppRun\n\n\n
+        creado por\n\n\n\n
+        Daniela Zapata\n
+        Santiago Osorio\n\n\n\n
+        Universidad de Antioquia\n
+        2016
+    </string>
+    <string name="logged_user">Usuario conectado</string>
+    <string name="email">Correo electronico</string>
+    <string name="username">Nombre de usuario</string>
+    <string-array name="options">
+        <item>Carreras</item>
+        <item>Perfíl</item>
+        <item>Acerca</item>
+        <item>Cerrar sesión</item>
+    </string-array>
+</resources>
