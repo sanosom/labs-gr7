@@ -1,10 +1,11 @@
-package organizate.compumovil.udea.edu.co;
+package organizate.compumovil.udea.edu.co.activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+
+import organizate.compumovil.udea.edu.co.R;
+import organizate.compumovil.udea.edu.co.db.DBHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -25,7 +26,10 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
         };
+
         timerThread.start();
+
+        new DBHelper(getApplicationContext());
     }
 
     @Override
