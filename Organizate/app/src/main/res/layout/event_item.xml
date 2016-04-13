@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/activity_alarm"
+        android:id="@+id/event_alarm"
         android:src="@drawable/ic_alarm_on"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -18,13 +18,13 @@
         android:layout_height="match_parent"
         android:layout_weight="6">
         <TextView
-            android:id="@+id/activity_name"
+            android:id="@+id/event_name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2" />
 
         <TextView
-            android:id="@+id/activity_date"
+            android:id="@+id/event_date"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />

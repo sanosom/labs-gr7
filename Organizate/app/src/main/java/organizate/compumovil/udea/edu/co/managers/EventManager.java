@@ -12,7 +12,7 @@ import organizate.compumovil.udea.edu.co.db.DBHelper;
 /**
  * Created by santiago on 4/12/16.
  */
-public class ActivityManager {
+public class EventManager {
 
     private DBHelper helper;
 
@@ -23,14 +23,27 @@ public class ActivityManager {
     public static final String CN_NAME = "name";
     public static final String CN_PLACE = "place";
     public static final String CN_REPEAT = "repeat";
-    public static final String CN_DURATION = "distance";
+    public static final String CN_DURATION = "duration";
 
     public static final String TABLE_NAME = "events";
 
-    public ActivityManager(Context context) {
+    public EventManager(Context context) {
         helper = new DBHelper(context);
 
         db = helper.getWritableDatabase();
+
+        // Uncomment this if you want to create hardcoded events
+        /*
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 60);
+            create(new Date(0), "Actividad 2", "", "", 60);
+            create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 60);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        */
+
     }
 
     private ContentValues generateContentValues(Date date, String name, String place,

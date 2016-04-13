@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Organizate</string>
 
-    <string name="title_activity_splash">SplashActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-
     <string name="alarm">Alarm</string>
-    <string name="title_activity_add">AddActivity</string>
+
+    <string name="name_hint">Event\'s name</string>
+    <string name="alarm_hint">Activate alarm</string>
+    <string name="place_hint">Event\'s place</string>
+    <string name="repeat_hint">Activate repetition</string>
+    <string name="duration_hint">Event\'s duration</string>
 </resources>

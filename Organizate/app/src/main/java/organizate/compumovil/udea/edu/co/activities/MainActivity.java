@@ -1,21 +1,23 @@
 package organizate.compumovil.udea.edu.co.activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import organizate.compumovil.udea.edu.co.R;
-import organizate.compumovil.udea.edu.co.managers.ActivityCursor;
-import organizate.compumovil.udea.edu.co.managers.ActivityManager;
+import organizate.compumovil.udea.edu.co.managers.EventCursor;
+import organizate.compumovil.udea.edu.co.managers.EventManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityCursor adapter;
+    EventCursor adapter;
 
     ListView listView;
 
-    ActivityManager activityManager;
+    EventManager eventManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +26,21 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.app_name);
 
-        activityManager = new ActivityManager(getApplicationContext());
+        eventManager = new EventManager(getApplicationContext());
 
-        listView = (ListView) findViewById(R.id.activity_list);
+        listView = (ListView) findViewById(R.id.event_list);
 
-        Cursor activities = activityManager.read();
+        Cursor activities = eventManager.read();
 
-        adapter = new ActivityCursor(this, activities, 0);
+        adapter = new EventCursor(this, activities, 0);
 
         listView.setAdapter(adapter);
+    }
+
+    public void addEvent(View view) {
+        Intent intent = new Intent(getApplicationContext(), EventActivity.class);
+
+        startActivity(intent);
     }
 
 }

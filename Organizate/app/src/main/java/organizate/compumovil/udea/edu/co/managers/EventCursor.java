@@ -14,25 +14,25 @@ import organizate.compumovil.udea.edu.co.R;
 /**
  * Created by santiago on 4/12/16.
  */
-public class ActivityCursor extends CursorAdapter {
+public class EventCursor extends CursorAdapter {
 
-    public ActivityCursor(Context context, Cursor cursor, int flags) {
+    public EventCursor(Context context, Cursor cursor, int flags) {
         super(context, cursor, flags);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.activity_item, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.event_item, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView name = (TextView) view.findViewById(R.id.activity_name);
-        TextView date = (TextView) view.findViewById(R.id.activity_date);
-        ImageView alarm = (ImageView) view.findViewById(R.id.activity_alarm);
+        TextView name = (TextView) view.findViewById(R.id.event_name);
+        TextView date = (TextView) view.findViewById(R.id.event_date);
+        ImageView alarm = (ImageView) view.findViewById(R.id.event_alarm);
 
-        String _name = cursor.getString(cursor.getColumnIndexOrThrow(ActivityManager.CN_NAME));
-        Integer _date = cursor.getInt(cursor.getColumnIndexOrThrow(ActivityManager.CN_DATE));
+        String _name = cursor.getString(cursor.getColumnIndexOrThrow(EventManager.CN_NAME));
+        Integer _date = cursor.getInt(cursor.getColumnIndexOrThrow(EventManager.CN_DATE));
 
         if (_date == null) {
             alarm.setImageResource(R.drawable.ic_alarm_add);
@@ -43,7 +43,10 @@ public class ActivityCursor extends CursorAdapter {
         }
 
         name.setText(_name);
-        date.setText(_date);
+
+        if (_date != null || _date > 0) {
+            date.setText(_date.toString());
+        }
     }
 
 }
