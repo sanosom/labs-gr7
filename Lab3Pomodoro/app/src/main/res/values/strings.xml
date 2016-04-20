@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Lab3Pomodoro</string>
+    <string name="title_activity_settings">Pomodoro Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string-array name="pref_short_break_list_titles">
+        <item>3 Minutos</item>
+        <item>4 Minutos</item>
+        <item>5 Minutos</item>
+        <item>6 Minutos</item>
+    </string-array>
+    <string-array name="pref_short_break_list_values">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="pref_long_break_list_titles">
+        <item>10 Minutos</item>
+        <item>15 Minutos</item>
+        <item>20 Minutos</item>
+    </string-array>
+    <string-array name="pref_long_break_list_values">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+    <string name="silent">Silencio</string>
+</resources>
