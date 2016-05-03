@@ -39,11 +39,12 @@ public class EventManager {
             create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 60);
             create(new Date(0), "Actividad 2", "", "", 60);
             create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 60);
+            create(new Date(format.parse("2015-06-01").getTime()), "Actividad 4", "", "", 60);
+            create(new Date(-1), "Actividad 5", "", "", 60);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         */
-
     }
 
     private ContentValues generateContentValues(Date date, String name, String place,
@@ -51,7 +52,7 @@ public class EventManager {
 
         ContentValues values = new ContentValues();
 
-        values.put(CN_DATE, date.getTime());
+        values.put(CN_DATE, date.getTime() / 1000);
         values.put(CN_NAME, name);
         values.put(CN_PLACE, place);
         values.put(CN_REPEAT, repeat);

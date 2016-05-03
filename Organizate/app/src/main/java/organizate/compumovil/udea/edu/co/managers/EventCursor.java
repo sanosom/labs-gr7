@@ -3,11 +3,16 @@ package organizate.compumovil.udea.edu.co.managers;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import organizate.compumovil.udea.edu.co.R;
 
@@ -20,32 +25,52 @@ public class EventCursor extends CursorAdapter {
         super(context, cursor, flags);
     }
 
+    SimpleDateFormat format = new SimpleDateFormat("dd MMM - hh:mm a");
+
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.event_item, parent, false);
+        View view;
+
+        long time = cursor.getLong(cursor.getColumnIndexOrThrow(EventManager.CN_DATE));
+
+        if (time == 0) {
+            view = LayoutInflater.from(context).inflate(R.layout.event_item_single, parent, false);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.event_item, parent, false);
+        }
+
+        return view;
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView name = (TextView) view.findViewById(R.id.event_name);
-        TextView date = (TextView) view.findViewById(R.id.event_date);
-        ImageView alarm = (ImageView) view.findViewById(R.id.event_alarm);
+        long now = new Date().getTime();
 
-        String _name = cursor.getString(cursor.getColumnIndexOrThrow(EventManager.CN_NAME));
-        Integer _date = cursor.getInt(cursor.getColumnIndexOrThrow(EventManager.CN_DATE));
+        TextView _name = (TextView) view.findViewById(R.id.event_name);
+        TextView _date = (TextView) view.findViewById(R.id.event_date);
+        ImageView _alarm = (ImageView) view.findViewById(R.id.event_alarm);
 
-        if (_date == null) {
-            alarm.setImageResource(R.drawable.ic_alarm_add);
-        } else if (_date > 0) {
-            alarm.setImageResource(R.drawable.ic_alarm_on);
-        } else {
-            alarm.setImageResource(R.drawable.ic_alarm_off);
-        }
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(EventManager.CN_NAME));
 
-        name.setText(_name);
+        long time = cursor.getLong(cursor.getColumnIndexOrThrow(EventManager.CN_DATE)) * 1000;
 
-        if (_date != null || _date > 0) {
-            date.setText(_date.toString());
+        Date date = new Date(time);
+
+        _name.setText(name);
+
+        if (time == 0) {
+            _alarm.setImageResource(R.drawable.ic_alarm_add);
+        } else if (time > 0) {
+            _alarm.setImageResource(R.drawable.ic_alarm_on);
+
+            if (_date != null) {
+                if (time > now) {
+                    _date.setText(format.format(date));
+                } else {
+                    _date.setText(DateUtils.formatDateTime(context, time, DateUtils.FORMAT_ABBREV_TIME));
+                    _alarm.setImageResource(R.drawable.ic_alarm_off);
+                }
+            }
         }
     }
 

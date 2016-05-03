@@ -16,11 +16,11 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "organizate.sqlite";
 
     private static final String TABLE_ACTIVITY = "create table " + EventManager.TABLE_NAME + " ("
-            + EventManager.CN_ID + " integer primary key autoincrement,"
-            + EventManager.CN_NAME + " text not null,"
-            + EventManager.CN_DATE + " int,"
-            + EventManager.CN_PLACE + " text not null,"
-            + EventManager.CN_REPEAT + " text,"
+            + EventManager.CN_ID + " integer primary key autoincrement, "
+            + EventManager.CN_NAME + " text not null, "
+            + EventManager.CN_DATE + " integer, "
+            + EventManager.CN_PLACE + " text not null, "
+            + EventManager.CN_REPEAT + " text, "
             + EventManager.CN_DURATION + " int not null);";
 
     public DBHelper(Context context) {

@@ -11,7 +11,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import organizate.compumovil.udea.edu.co.R;
 import organizate.compumovil.udea.edu.co.managers.EventManager;
 
-public class EventActivity extends AppCompatActivity {
+public class EditorActivity extends AppCompatActivity {
 
     EditText _name;
     EditText _place;
@@ -46,7 +46,7 @@ public class EventActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
-                seekBar.setPadding(0, 100, 0, 0);
+                seekBar.setPadding(0, 120, 0, 0);
             }
 
             @Override
