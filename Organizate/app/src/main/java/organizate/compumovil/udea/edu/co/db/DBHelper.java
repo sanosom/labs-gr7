@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import organizate.compumovil.udea.edu.co.R;
+import organizate.compumovil.udea.edu.co.managers.CategoryManager;
 import organizate.compumovil.udea.edu.co.managers.EventManager;
 
 /**
@@ -15,6 +17,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "organizate.sqlite";
 
+    private static Context context;
+
     private static final String TABLE_ACTIVITY = "create table " + EventManager.TABLE_NAME + " ("
             + EventManager.CN_ID + " integer primary key autoincrement, "
             + EventManager.CN_NAME + " text not null, "
@@ -24,23 +28,42 @@ public class DBHelper extends SQLiteOpenHelper {
             + EventManager.CN_CATEGORY + " int not null, "
             + EventManager.CN_DURATION + " int not null);";
 
+    public static final String TABLE_CATEGORY = "create table " + CategoryManager.TABLE_NAME + " ("
+            + CategoryManager.CN_ID + " integer primary key autoincrement, "
+            + CategoryManager.CN_NAME + " text not null, "
+            + CategoryManager.CN_COLOR + " text not null, "
+            + CategoryManager.CN_IS_DEFAULT + " integer);";
+
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_SCHEME_VERSION);
+
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(TABLE_CATEGORY);
         db.execSQL(TABLE_ACTIVITY);
+
+        CategoryManager categoryManager = new CategoryManager(context);
+
+        categoryManager.create(context.getString(R.string.category_work), context.getString(R.color.cyan), true);
+        categoryManager.create(context.getString(R.string.category_study), context.getString(R.color.lime), true);
+        categoryManager.create(context.getString(R.string.category_hoobie), context.getString(R.color.pink), true);
+        categoryManager.create(context.getString(R.string.category_others), context.getString(R.color.purple), true);
 
         // Uncomment this if you want to create hardcoded events
         /*
         try {
+            EventManager eventManager = new EventManager(context);
+
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 60);
-            create(new Date(0), "Actividad 2", "", "", 60);
-            create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 60);
-            create(new Date(format.parse("2015-06-01").getTime()), "Actividad 4", "", "", 60);
-            create(new Date(-1), "Actividad 5", "", "", 60);
+
+            eventManager.create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 60);
+            eventManager.create(new Date(0), "Actividad 2", "", "", 60);
+            eventManager.create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 60);
+            eventManager.create(new Date(format.parse("2015-06-01").getTime()), "Actividad 4", "", "", 60);
+            eventManager.create(new Date(-1), "Actividad 5", "", "", 60);
         } catch (ParseException e) {
             e.printStackTrace();
         }
