@@ -21,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + EventManager.CN_DATE + " integer, "
             + EventManager.CN_PLACE + " text not null, "
             + EventManager.CN_REPEAT + " text, "
+            + EventManager.CN_CATEGORY + " int not null, "
             + EventManager.CN_DURATION + " int not null);";
 
     public DBHelper(Context context) {
@@ -30,6 +31,20 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_ACTIVITY);
+
+        // Uncomment this if you want to create hardcoded events
+        /*
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 60);
+            create(new Date(0), "Actividad 2", "", "", 60);
+            create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 60);
+            create(new Date(format.parse("2015-06-01").getTime()), "Actividad 4", "", "", 60);
+            create(new Date(-1), "Actividad 5", "", "", 60);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        */
     }
 
     @Override
