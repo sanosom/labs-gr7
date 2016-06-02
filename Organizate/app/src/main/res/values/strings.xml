@@ -13,4 +13,9 @@
     <string name="category_study">Study</string>
     <string name="category_hoobie">Hoobie</string>
     <string name="category_others">Others</string>
+
+    <string name="ingresar">Ingresar</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="contraseña">Ingrese contraseña</string>
+    <string name="correo">Ingrese correo electronico</string>
 </resources>
