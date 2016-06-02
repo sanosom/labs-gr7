@@ -59,11 +59,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-            eventManager.create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 60);
-            eventManager.create(new Date(0), "Actividad 2", "", "", 60);
-            eventManager.create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 60);
-            eventManager.create(new Date(format.parse("2015-06-01").getTime()), "Actividad 4", "", "", 60);
-            eventManager.create(new Date(-1), "Actividad 5", "", "", 60);
+            eventManager.create(new Date(format.parse("2016-06-01").getTime()), "Actividad 1", "", "", 1, 60);
+            eventManager.create(new Date(0), "Actividad 2", "", "", 2, 60);
+            eventManager.create(new Date(format.parse("2016-06-02").getTime()), "Actividad 3", "", "", 1, 60);
+            eventManager.create(new Date(format.parse("2015-06-01").getTime()), "Actividad 4", "", "", 1, 60);
+            eventManager.create(new Date(-1), "Actividad 5", "", "", 3, 60);
         } catch (ParseException e) {
             e.printStackTrace();
         }
