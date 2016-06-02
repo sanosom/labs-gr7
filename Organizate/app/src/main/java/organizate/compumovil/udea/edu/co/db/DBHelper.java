@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import organizate.compumovil.udea.edu.co.R;
 import organizate.compumovil.udea.edu.co.managers.CategoryManager;
+import organizate.compumovil.udea.edu.co.managers.ContactManager;
 import organizate.compumovil.udea.edu.co.managers.EventManager;
 
 /**
@@ -17,7 +18,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "organizate.sqlite";
 
-    private static Context context;
+    private static final String TABLE_CONTACT = "create table " + ContactManager.TABLE_NAME + " ("
+            + ContactManager.CN_ID + " integer primary key autoincrement, "
+            + ContactManager.CN_UID + " text not null, "
+            + ContactManager.CN_NAME + " text not null, "
+            + ContactManager.CN_EMAIL + " text not null);";
 
     private static final String TABLE_ACTIVITY = "create table " + EventManager.TABLE_NAME + " ("
             + EventManager.CN_ID + " integer primary key autoincrement, "
@@ -34,6 +39,8 @@ public class DBHelper extends SQLiteOpenHelper {
             + CategoryManager.CN_COLOR + " text not null, "
             + CategoryManager.CN_IS_DEFAULT + " integer);";
 
+    private Context context;
+
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_SCHEME_VERSION);
 
@@ -41,9 +48,11 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
+    @SuppressWarnings("ResourceType")
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CATEGORY);
+        db.execSQL(TABLE_CONTACT);
         db.execSQL(TABLE_ACTIVITY);
+        db.execSQL(TABLE_CATEGORY);
 
         CategoryManager categoryManager = new CategoryManager(context);
 
