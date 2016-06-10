@@ -26,8 +26,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.EditorActivity" />
-        <activity android:name=".activities.LoginActivity"></activity>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/title_login" />
+        <activity
+            android:name=".activities.EditorActivity"
+            android:label="@string/title_editor" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_settings" />
+
+        <service
+            android:name=".services.CountDown"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -3,6 +3,8 @@ package organizate.compumovil.udea.edu.co.activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import organizate.compumovil.udea.edu.co.R;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override

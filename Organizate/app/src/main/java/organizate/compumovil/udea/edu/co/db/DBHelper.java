@@ -54,12 +54,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_ACTIVITY);
         db.execSQL(TABLE_CATEGORY);
 
+        /*
         CategoryManager categoryManager = new CategoryManager(context);
 
         categoryManager.create(context.getString(R.string.category_work), context.getString(R.color.cyan), true);
         categoryManager.create(context.getString(R.string.category_study), context.getString(R.color.lime), true);
         categoryManager.create(context.getString(R.string.category_hoobie), context.getString(R.color.pink), true);
         categoryManager.create(context.getString(R.string.category_others), context.getString(R.color.purple), true);
+        */
 
         // Uncomment this if you want to create hardcoded events
         /*
