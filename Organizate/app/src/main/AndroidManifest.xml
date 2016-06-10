@@ -40,6 +40,8 @@
             android:name=".services.CountDown"
             android:enabled="true"
             android:exported="true" />
+
+        <activity android:name=".activities.Categoria"></activity>
     </application>
 
 </manifest>
