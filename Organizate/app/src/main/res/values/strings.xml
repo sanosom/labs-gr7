@@ -13,11 +13,15 @@
     <string name="repeat_hint">Activate repetition</string>
     <string name="duration_hint">Event\'s duration</string>
 
+    <string name="namec_hint">category name</string>
+    <string name="color_hint">color</string>
+
     <string name="category_work">Work</string>
     <string name="category_study">Study</string>
     <string name="category_hoobie">Hoobie</string>
     <string name="category_others">Others</string>
-
+    <string name="about">Organìzate es una aplicaciòn pensada para administrar su tiempo de una forma efectiva, esta busca brindar una forma práctica de llevar su lista de tareas pendientes, actividades y recordatorios con notificaciones y alertas que les permitan manejar mejor su tiempo y realizar oportunamente cada una de ellas. Esta aplicación permite agendar tareas y asignar fecha y tiempo estimado de duración con el cual se estarà alertando las tareas próximas y las que están por terminar</string>
+    <string name="desarrollado">Desarrollado por: Santiago Osorio murillo y Daniela Zapata Arroyave</string>
     <string name="email">User\'s email</string>
     <string name="password">User\'s password</string>
     <string name="signin">Sign in</string>
