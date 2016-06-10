@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.sql.Date;
+import java.util.Date;
 
 import organizate.compumovil.udea.edu.co.db.DBHelper;
 

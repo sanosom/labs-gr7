@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private FirebaseUser user;
 
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,20 +50,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             actionBar.setTitle(R.string.app_name);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
-            // actionBar.setIcon();
         }
 
         listView = (ListView) findViewById(R.id.left_frame);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.container_main);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        user = firebaseAuth.getCurrentUser();
 
         if (user != null) {
             isLogged = true;
         }
 
-        FirebaseAuth.getInstance().addAuthStateListener(this);
+        firebaseAuth.addAuthStateListener(this);
 
         replaceOptions();
 
@@ -95,13 +99,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 2:
                 if (isLogged) {
+                    fragment = new ContactsFragment();
+                } else {
                     Intent intent = new Intent(view.getContext(), LoginActivity.class);
 
                     startActivity(intent);
 
                     return;
-                } else {
-                    fragment = new ContactsFragment();
                 }
 
                 break;
@@ -115,9 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 fragment = new AboutFragment();
                 break;
             case 5:
-                // Logout
-
-                replaceOptions();
+                firebaseAuth.signOut();
                 return;
         }
 
@@ -136,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         drawerLayout.closeDrawer(listView);
     }
 
-
     @Override
     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
         user = firebaseAuth.getCurrentUser();
@@ -145,6 +146,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             isLogged = true;
         } else {
             isLogged = false;
+        }
+
+        replaceOptions();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        if (user != null) {
+            isLogged = true;
         }
 
         replaceOptions();

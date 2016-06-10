@@ -23,6 +23,10 @@
     <string name="signin">Sign in</string>
     <string name="signup">Sign up</string>
 
+    <string name="email_password_required">Email &amp; Password are required</string>
+    <string name="signin_failed">There\'s an error, please sign in again.</string>
+    <string name="signup_failed">There\'s an error, please sign up again.</string>
+
     <string-array name="options">
         <item>Activities</item>
         <item>Categories</item>

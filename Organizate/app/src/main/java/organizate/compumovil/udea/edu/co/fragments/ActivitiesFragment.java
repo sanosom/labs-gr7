@@ -44,13 +44,7 @@ public class ActivitiesFragment extends Fragment implements View.OnClickListener
 
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_event);
 
-        Cursor activities = eventManager.read();
-
-        adapter = new EventCursor(this.getContext(), activities, 0);
-
-        listView.setAdapter(adapter);
-
-        floatingActionButton.setOnClickListener(this);
+        loadActivities();
 
         return view;
     }
@@ -60,5 +54,22 @@ public class ActivitiesFragment extends Fragment implements View.OnClickListener
         Intent intent = new Intent(this.getContext(), EditorActivity.class);
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadActivities();
+    }
+
+    public void loadActivities() {
+        Cursor activities = eventManager.read();
+
+        adapter = new EventCursor(this.getContext(), activities, 0);
+
+        listView.setAdapter(adapter);
+
+        floatingActionButton.setOnClickListener(this);
     }
 }

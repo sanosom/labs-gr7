@@ -39,29 +39,32 @@ public class DBHelper extends SQLiteOpenHelper {
             + CategoryManager.CN_COLOR + " text not null, "
             + CategoryManager.CN_IS_DEFAULT + " integer);";
 
-    private Context context;
-
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_SCHEME_VERSION);
-
-        this.context = context;
     }
 
     @Override
-    @SuppressWarnings("ResourceType")
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CONTACT);
         db.execSQL(TABLE_ACTIVITY);
         db.execSQL(TABLE_CATEGORY);
+    }
 
-        /*
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    @SuppressWarnings("ResourceType")
+    public void populate(Context context) {
         CategoryManager categoryManager = new CategoryManager(context);
 
-        categoryManager.create(context.getString(R.string.category_work), context.getString(R.color.cyan), true);
-        categoryManager.create(context.getString(R.string.category_study), context.getString(R.color.lime), true);
-        categoryManager.create(context.getString(R.string.category_hoobie), context.getString(R.color.pink), true);
-        categoryManager.create(context.getString(R.string.category_others), context.getString(R.color.purple), true);
-        */
+        if (categoryManager.read().getCount() == 0) {
+            categoryManager.create(context.getString(R.string.category_work), context.getString(R.color.cyan), true);
+            categoryManager.create(context.getString(R.string.category_study), context.getString(R.color.lime), true);
+            categoryManager.create(context.getString(R.string.category_hoobie), context.getString(R.color.pink), true);
+            categoryManager.create(context.getString(R.string.category_others), context.getString(R.color.purple), true);
+        }
 
         // Uncomment this if you want to create hardcoded events
         /*
@@ -81,9 +84,5 @@ public class DBHelper extends SQLiteOpenHelper {
         */
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
 
 }

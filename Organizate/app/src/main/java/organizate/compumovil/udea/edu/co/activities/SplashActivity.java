@@ -29,7 +29,9 @@ public class SplashActivity extends AppCompatActivity {
 
         timerThread.start();
 
-        new DBHelper(getApplicationContext());
+        DBHelper db = new DBHelper(getApplicationContext());
+
+        db.populate(getApplicationContext());
     }
 
     @Override
