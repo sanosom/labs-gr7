@@ -28,6 +28,9 @@ public class Countdown extends Service {
     LocalBroadcastManager broadcaster;
 
     long actual;
+    long tiempo;
+    String name;
+    String place;
 
     public Countdown() {
     }
@@ -48,7 +51,9 @@ public class Countdown extends Service {
         Log.d(TAG, "Servicio iniciado...");
 
         Bundle bundle = intent.getExtras();
-        long tiempo = bundle.getLong("tiempo");
+        tiempo = bundle.getLong("time");
+        name = bundle.getString("name");
+        place = bundle.getString("place");
 
         timerTask = new CountDownTimer(tiempo,1000) {
             Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
@@ -56,27 +61,28 @@ public class Countdown extends Service {
 
             Notification notificacion = new NotificationCompat.Builder(getApplicationContext())
                     .setSmallIcon(R.drawable.ic_alarm)
-                    .setProgress(100, 10, false)
+                    .setProgress((int)tiempo, 0, false)
                     .addAction(R.drawable.ic_alarm_off, "Terminar", null)
                     .addAction(R.drawable.ic_alarm_add, "Agregar 10 minutos", null)
                     .setContentIntent(pIntent)
-                    .setContentTitle("Actividad 2")
-                    .setContentText("Universidad de Antioquia - 27 minutos restantes")
+                    .setContentTitle(name)
+                    .setContentText(place + " - " + (tiempo / 1000) + " segundos restantes.")
                     .build();
 
             @Override
             public void onTick(long millisUntilFinished) {
                 notificacion = new NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.ic_alarm)
-                        .setProgress(100, 10, false)
+                        .setProgress((int)tiempo, (int) (tiempo - millisUntilFinished), false)
                         .addAction(R.drawable.ic_alarm_off, "Terminar", null)
                         .addAction(R.drawable.ic_alarm_add, "Agregar 10 minutos", null)
                         .setContentIntent(pIntent)
-                        .setContentTitle("Actividad 2")
-                        .setContentText("Universidad de Antioquia - 27 minutos restantes")
+                        .setContentTitle(name)
+                        .setContentText(place + " - " + (millisUntilFinished / 1000) + " segundos restantes.")
                         .build();
 
                 actual = millisUntilFinished;
+
                 startForeground(1, notificacion);
 
                 Intent intent = new Intent("tiempo");
@@ -100,10 +106,10 @@ public class Countdown extends Service {
 
                 Notification noti = new NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.ic_alarm)
-                        .setProgress(100, 10, false)
+                        .setProgress(100, 100, false)
                         .setContentIntent(pIntent)
-                        .setContentTitle("Actividad 2")
-                        .setContentText("Universidad de Antioquia - 27 minutos restantes")
+                        .setContentTitle(name)
+                        .setContentText(place + " - " + " finalizada.")
                         .build();
 
                 noti.sound = uri;

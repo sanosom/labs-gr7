@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import organizate.compumovil.udea.edu.co.R;
+import organizate.compumovil.udea.edu.co.activities.CategoryActivity;
 import organizate.compumovil.udea.edu.co.activities.EditorActivity;
 import organizate.compumovil.udea.edu.co.managers.CategoryManager;
 
@@ -45,6 +46,28 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
 
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_category);
 
+        loadCategories();
+
+        floatingActionButton.setOnClickListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this.getContext(), CategoryActivity.class);
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadCategories();
+    }
+
+    public void loadCategories() {
         Cursor categories = categoryManager.read();
 
         List categoriesList = new ArrayList();
@@ -55,20 +78,9 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
             } while (categories.moveToNext());
         }
 
-        ArrayAdapter adapter = new ArrayAdapter(view.getContext(),
+        ArrayAdapter adapter = new ArrayAdapter(this.getContext(),
                 android.R.layout.simple_list_item_1, categoriesList);
 
         listView.setAdapter(adapter);
-
-        floatingActionButton.setOnClickListener(this);
-
-        return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(this.getContext(), EditorActivity.class);
-
-        startActivity(intent);
     }
 }

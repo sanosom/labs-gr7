@@ -2,6 +2,7 @@ package organizate.compumovil.udea.edu.co.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.Date;
 
 import organizate.compumovil.udea.edu.co.R;
 import organizate.compumovil.udea.edu.co.managers.EventManager;
+import organizate.compumovil.udea.edu.co.services.Countdown;
 
 public class EditorActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -148,6 +150,14 @@ public class EditorActivity extends AppCompatActivity implements CompoundButton.
         Integer category = 0;
 
         eventManager.create(alarm, name, place, repeat, category, duration);
+
+        Intent countdown = new Intent(getApplicationContext(), Countdown.class);
+
+        countdown.putExtra("time", (long)duration * 1000);
+        countdown.putExtra("name", name);
+        countdown.putExtra("place", place);
+
+        startService(countdown);
 
         finish();
     }

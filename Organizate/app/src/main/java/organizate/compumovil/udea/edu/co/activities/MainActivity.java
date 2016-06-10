@@ -69,12 +69,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         replaceOptions();
 
         loadActivities();
-
-        Intent countdown = new Intent(getApplicationContext(), Countdown.class);
-
-        countdown.putExtra("tiempo", 10000000);
-
-        startService(countdown);
     }
 
     @Override

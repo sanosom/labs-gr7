@@ -37,11 +37,12 @@
             android:label="@string/title_settings" />
 
         <service
-            android:name=".services.CountDown"
+            android:name=".services.Countdown"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activities.Categoria"></activity>
+        <activity android:name=".activities.CategoryActivity"
+            android:label="@string/title_categories" />
     </application>
 
 </manifest>
