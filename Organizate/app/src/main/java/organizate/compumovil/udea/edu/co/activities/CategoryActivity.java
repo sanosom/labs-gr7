@@ -32,6 +32,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         categoryManager.create(name, color, false);
 
-        finishActivity(0);
+        finish();
     }
 }

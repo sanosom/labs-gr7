@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements FirebaseAuth.Aut
         } else {
             action = 0;
             FirebaseAuth.getInstance().removeAuthStateListener(this);
-            finishActivity(0);
+            finish();
         }
 
 
